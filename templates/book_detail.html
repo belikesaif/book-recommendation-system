@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data['Book-Title'] }} - Book Details</title>
+    <style>
+        /* Styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .book-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .book-details h1, .book-details h2 {
+            margin: 0;
+        }
+        .book-details h2 {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .rating-form, .comments-section {
+            margin-top: 20px;
+        }
+        .rating-form label, .rating-form input, .rating-form textarea, .rating-form button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .rating-form button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px;
+            border: none;
+            margin-inline: 2.5px;
+            cursor: pointer;
+        }
+        .comment {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .heart-btn {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .open-book-btn {
+            background-color: #009688;
+            color: white;
+        }
+
+        .download-btn {
+            background-color: #5c6bc0;
+            color: white;
+        }
+
+        /* Hover effects */
+        button:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Specific hover styles if needed */
+        .heart-btn:hover {
+            background-color: #f50057;
+        }
+
+        .open-book-btn:hover {
+            background-color: #00796b;
+        }
+
+        .download-btn:hover {
+            background-color: #3f51b5;
+        }
+        /* Button general styles - adding specific width */
+        button, .heart-btn, .open-book-btn, .download-btn {
+            padding: 10px 20px; /* Adjust padding for better visual */
+            width: 50%; /* Uniform width for all buttons */
+            display: inline-block; /* Allows buttons to be inline and center align */
+            text-align: center; /* Centers the text/icon inside the button */
+            margin: 10px; /* Adds spacing between buttons */
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Align buttons container for centering */
+        .book-image + button, /* Directly after .book-image */
+        .rating-form + button { /* Directly after .rating-form for general case */
+            margin-left: auto;
+            margin-right: auto;
+            display: block; /* Stack buttons vertically and center align */
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px -5px; /* Adjust margin to handle spacing */
+        }
+
+        .flex-container button {
+            width: calc(50% - 10px); /* Adjust width to fill half the container minus margin */
+            margin: 5px; /* Small margin to ensure separation */
+        }
+
+        .heart-btn {
+            display: block; /* Ensure this button is full width */
+            width: calc(100% - 0px); /* Adjust to container width minus margin */
+            margin: 10px auto; /* Center align the heart button */
+        }
+
+        .alert {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .delete-button {
+          background-color: #ff4d4d;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+          background-color: #ff3333;
+        }
+
+        .delete-button:active {
+          transform: translateY(2px);
+        }
+
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
+            justify-content: center; /* Center the buttons horizontally */
+        }
+
+        .beautiful-link {
+            flex-grow: 1; /* Allow buttons to grow and fill the available space */
+            text-align: center;
+            padding: 10px 20px; /* Adjust padding for better visual */
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+            max-width: 200px; /* Limit maximum width of each button */
+        }
+
+        .beautiful-link:hover {
+            background-color: #2980b9;
+        }
+
+        a img {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #000;
+        }
+
+        .book-details h1 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="button-row">
+        <a href="/home">
+            <img src="/static/logo.png" alt="BS.PK">
+        </a>
+        <a href="/home" class="beautiful-link">Home</a>
+        <a href="/Recommend" class="beautiful-link">Recommendation</a>
+        <a href="/Favorite" class="beautiful-link">My Books</a>
+        <a href="/search-choose-category" class="beautiful-link">Categories</a>
+    </div>
+    <div class="book-details">
+        <h1>{{ data['Book-Title'] }}</h1>
+        <h2>by {{ data['Book-Author'] }}</h2>
+        <p><strong>Average Rating:</strong> {{ data['Avg-Rating'] }} ({{ data['Num-Rating'] }} Ratings)</p>
+        <p><strong>Year of Publication:</strong> {{ data['Year-Of-Publication'] }}</p>
+        <p><strong>Category:</strong> {{ data['Category'] }}</p>
+        <p><strong>Summary:</strong> {{ data['Summary'] }}</p>
+    </div>
+    <div class="book-image">
+        <img src="{{ data['Image-URL-M'] }}" alt="{{ data['Book-Title'] }}">
+    </div>
+
+
+    <button formaction="/add_to_favorites" formmethod="POST" type="submit" class="heart-btn" name="book_name" value="{{ data['Book-Title'] }}">♥ Add to Favorites</button>
+
+    <div class="flex-container">
+<!--        <button class="open-book-btn">📖 Open Book</button>-->
+        <a href="{{ data['Link'] }}" class="open-book-btn" target="_blank">📖 Open Book</a>
+<!--        <button  id="downloadButton" class="download-btn">⬇ Download Book</button>-->
+        <a href="{{ data['Link'] }}" class="download-btn" download="BookTitle.pdf">⬇ Download Book</a>
+    </div>
+
+    <div class="rating-form">
+    <h3>Rate and Review</h3>
+    {% if user_already_rated %}
+        <div>
+            You have already rated this book. Thank you for your feedback!
+        </div>
+        <form action="/delete-rating" method="POST">
+            <button class="delete-button" type="submit" name="book_name" value="{{ data['Book-Title'] }}">Delete Your Comment</button>
+        </form>
+    {% else %}
+    <form action="/submit-rating" method="POST">
+        <label for="rating">Rating</label>
+        <input type="number" id="rating" name="rating" step="0.0001" required min="0" max="5">
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" rows="4"></textarea>
+        <input type="hidden" id="book_name" name="book_name" value="{{ data['Book-Title'] }}">
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+    </div>
+    {% if ratings %}
+    <div class="comments-section">
+        <h3>User Comments</h3>
+        {% for rating in ratings %}
+            <div class="comment">
+                <p><strong>Username:</strong> {{ rating['Username'] }}</p>
+                <p><strong>Rating:</strong> {{ rating['Rating'] }}</p>
+                {% if rating['Comment'] %}
+                    <p><strong>Comment:</strong> {{ rating['Comment'] }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '.heart-btn', function(event) {
+            event.preventDefault();
+            var bookName = $(this).attr('value');
+            $.post('/add_to_favorites', {book_name: bookName}, function(data) {
+                alert(data.message);
+            });
+        });
+    });
+    </script>
+
+
+
+<script>
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            // Programmatically click the hidden link
+            document.getElementById('hiddenDownloadLink').click();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Categories</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #ecf5f3;
+    background-size: contain;
+    margin: auto;
+}
+
+.navbar {
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    background-color: #478778;
+    border-radius: 1%;
+    margin-bottom: 0;
+}
+
+.navbar ul {
+    overflow: auto;
+}
+
+.navbar li {
+    float: left;
+    list-style: none;
+    margin: 13px 20px;
+}
+
+.navbar li a {
+    padding: 3px 3px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar li a:hover {
+    color: red;
+}
+
+.logout {
+    float: right;
+    color: white;
+    padding: 12px 75px;
+    margin-top: 14px;
+}
+
+.navbar input {
+    border: 2px solid rgb(5, 5, 5);
+    border-radius: 14px;
+    padding: 3px 17px;
+    width: 200px;
+}
+
+.text-white {
+    color: black;
+}
+
+.nav-logo {
+    padding: inherit;
+    position: relative;
+    max-width: 85px;
+    max-height: 85px;
+}
+
+.nav-logo a img {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .navbar li {
+        margin: 10px 15px;
+    }
+
+    .navbar li a {
+        padding: 2px 5px;
+        font-size: 14px;
+    }
+
+    .logout {
+        padding: 8px 50px;
+        font-size: 14px;
+    }
+
+    .nav-logo {
+        max-width: 70px;
+        max-height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar li {
+        margin: 8px 10px;
+    }
+
+    .navbar li a {
+        padding: 2px 4px;
+        font-size: 12px;
+    }
+
+    .logout {
+        padding: 6px 40px;
+        font-size: 12px;
+    }
+
+    .nav-logo {
+        max-width: 60px;
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar li {
+        margin: 5px 5px 0px 0px;
+    }
+
+    .navbar li a {
+        padding: 5px 5px;
+        font-size: 10px;
+    }
+
+    .logout {
+        padding: 4px 30px;
+        font-size: 10px;
+    }
+
+    .nav-logo {
+        max-width: 65px;
+        max-height: 65px;
+    }
+}
+
+
+        .block p{
+            margin: 0px;
+            padding: 3px;
+            font-size: 12px;
+            line-height: 11px;
+        }
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: white;
+            <!--            color: #333;-->
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+
+    .search{
+        float: right;
+        color: white;
+        padding: 12px 75px;
+    }
+
+    .text-white{
+        color: white
+    }
+    .book-container {
+        display: flex;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        padding: 20px 0; /* Add space around the book cards */
+        gap:20px;
+    }
+    .book-card {
+        flex: 0 0 auto; /* Prevent books from growing or shrinking */
+        width: 250px; /* Set the width of each book card */
+        margin-right: 20px; /* Add space between book cards */
+    }
+    .book-card img {
+        max-width: 100%; /* Ensure images don't exceed their container */
+        height: auto;
+    }
+
+    .btn-primary {
+    background-color: #000000;
+    border: none;
+    padding: 6px;
+    color: white;
+    border-radius: 13px;
+    margin-top: -52px;
+    margin-left: 41px;
+    }
+    .btn-primary:hover {
+        background-color: #00008B; /* Dark Blue */
+        /* Change background color on hover */
+    }
+
+    .main-card-container{
+        max-height:400px;
+        min-width: 200px;
+        display:flex;
+        flex-direction:row;
+    }
+    .card{
+        width: 200px;
+        height: 90%;
+        padding:20px;
+        border:2px solid grey;
+        border-radius:12px;
+        background:#478778;
+        box-shadow: 4px 4px;
+    }
+     .card:hover{
+        background:green;
+      }
+    .card-img-top {
+            width: 100%;
+            max-height: 120px;
+            margin-bottom: 20px;
+        }
+
+        .category-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .category-column {
+        flex: 1 0 50%; /* Adjust to split the page into two parts */
+        padding: 10px;
+    }
+    .category-column input[type="checkbox"] {
+        margin-right: 5px;
+    }
+    .category-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .scrollable-columns {
+        display: flex;
+        height: 385px; /* Set the height of the scrollable area */
+        overflow-y: auto; /* Add vertical scroll */
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .column {
+        flex: 1;
+        padding: 10px;
+    }
+    .inner-column {
+        padding: 10px;
+    }
+    .category-box {
+        display: block;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+    .category-box:hover {
+        background-color: #f0f0f0;
+    }
+    .category-box input {
+        margin-right: 10px;
+    }
+    .submit-button {
+        display: block;
+        margin: 20px auto 0; /* Center the button and add top margin */
+    }
+</style>
+</head>
+<body>
+    <!--NaveBar-->
+    <div>
+        <nav class="navbar">
+            <div class="nav-logo pull-left">
+                <a href="/home">
+                    <img src="/static/logo.png" alt="BS.PK">
+                </a>
+            </div>
+
+            <ul class="navbar"
+                style="margin-bottom: 0; background-color: #78b8a9; padding:10px 20px; margin-top: -07px;">
+                <li>
+                    <a href="/home" style="border-radius: 50px; border: 3px solid black; padding: 10px 20px;
+                        background-color: #ecf5f3; color: black; text-decoration: none; display: inline-block;"
+                        onmouseover="this.style.backgroundColor='white'; this.style.color='#3366ff';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Recommend"
+                        style="border-radius: 50px; border: 3px solid black; padding: 10px 20px; background-color: #ecf5f3; color: black; text-decoration: none; display: inline-block;"
+                        onmouseover="this.style.backgroundColor='white'; this.style.color='#3366ff';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';">
+                        Recommendation For You
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Favorite"
+                        style="border-radius: 50px; border: 3px solid black; padding: 10px 20px; background-color: #ecf5f3; color: black; text-decoration: none; display: inline-block;"
+                        onmouseover="this.style.backgroundColor='white'; this.style.color='#3366ff';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';">
+                        My Books
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/search-choose-category"
+                        style="border-radius: 50px; border: 3px solid black; padding: 10px 20px; background-color: #ecf5f3; color: black; text-decoration: none; display: inline-block;"
+                        onmouseover="this.style.backgroundColor='white'; this.style.color='#3366ff';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';">
+                        Categories
+                    </a>
+                </li>
+
+                <div class="logout">
+
+                    <a href="/logout"
+                        style="border-radius: 50px; border: 3px solid black; padding: 10px 10px; background-color: #ecf5f3; color: black; text-decoration: none; margin-bottom: 0px; "
+                        onmouseover="this.style.backgroundColor='white'; this.style.color='red';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';">
+                        Logout
+                    </a>
+                </div>
+            </ul>
+        </nav>
+    </div>
+
+
+
+<!-- Search Category Books -->
+<div class="container" style="margin: 20px auto;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="font-size: 18px;">Enter Book Category to Search</h1>
+            <form action="/search-choose-category" method="post">
+                <input style="width: 300px; border-radius: 05px; padding: 07px;" type="text" id="searchInput" name="search" placeholder="Search for Book Category">
+                <button style="padding: 07px; width: auto; border-radius: 10px; background-color: #ecf5f3; color: black; text-decoration: none; margin-bottom: 0px; "
+                        onmouseover="this.style.backgroundColor='blue'; this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='#ecf5f3'; this.style.color='black';"
+                        type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<h1>Category List</h1>
+{% set seen_categories = [] %}
+{% set t = 0 %}
+{% for category in Name_of_category %}
+    {% set i = 0 %}
+    {% set category_completed = false %}
+    {% if category not in seen_categories %}
+        {% set _ = seen_categories.append(category) %}
+        <h3>{{ category }}</h3>
+        <div class="container" style="margin: 20px auto;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="book-container">
+                        {% for book in data %}
+                            {% if not category_completed and book['Category'] == category %}
+                                <div class="main-card-container">
+                                    <form action="/rating-page" method="POST">
+                                        <button class="card" type="submit" name="book_name" value="{{ book['Book-Title'] }}">
+                                            <div class="card-body">
+                                                <img class="card-img-top" src="{{ book['Image-URL-M'] }}" alt="Book Image">
+                                                <p class="text-white">{{ book['Category'] }}</p>
+                                                <p class="text-white">{{ book['Book-Title'] }}</p>
+                                                <h4 class="text-white">{{ book['Book-Author'] }}</h4>
+                                                <h4 class="text-white">Votes - {{ book['votes'] }}</h4>
+                                                <h4 class="text-white" style="font-size: 15px;">
+                                                    {% if book['rating'] == 0 %} &#9734; {% endif %}
+                                                    {% for _ in range(book['rating']|int) %} &#9733; {% endfor %}
+                                                    {% if book['rating'] % 1 != 0 %} &#9734; {% endif %}
+                                                </h4>
+                                            </div>
+
+                                            <button formaction="/add_to_favorites" formmethod="POST" class="btn btn-primary" type="submit" name="book_name" value="{{ book['Book-Title'] }}">Add to Favorites</button>
+
+                                        </button>
+                                    </form>
+                                </div>
+                                {% set i = i + 1 %}
+                                {% if i == No_of_category[t] %}
+                                    {% set t = loop.index0 %}
+                                    {% set category_completed = true %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+
+
+
+    {% if msg %}
+    <h5 style="color: white; margin-left: 14%;">No Book Found with this Category!</h5>
+    {% endif %}
+    {% if not data %}
+    {% if not msg %}
+    <!--Choose Category-->
+    <div class="container">
+    <h1>Select Categories</h1>
+    <form action="/process_categories" method="POST">
+        <div class="scrollable-columns">
+            <div class="column">
+                {% set midpoint = (categories | length) // 2 + (categories | length) % 2 %}
+                <div class="inner-column">
+                    {% for category in categories[:midpoint] %}
+                        <label class="category-box">
+                            <input type="checkbox" name="selected_categories" value="{{ category }}">
+                            {{ category }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <div class="inner-column">
+                    {% set reversed_categories = categories[midpoint:][::-1] %}
+                    {% for category in reversed_categories %}
+                        <label class="category-box">
+                            <input type="checkbox" name="selected_categories" value="{{ category }}">
+                            {{ category }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <br>
+        <input type="submit" value="OK" class="submit-button">
+    </form>
+</div>
+    {% endif %}
+    {% endif %}
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '.btn-primary', function(event) {
+            event.preventDefault();
+            var bookName = $(this).attr('value');
+            $.post('/add_to_favorites', {book_name: bookName}, function(data) {
+                alert(data.message);
+            });
+        });
+    });
+    </script>
+</body>
+</html>

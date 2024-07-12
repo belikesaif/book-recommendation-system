@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        
+        <link rel="stylesheet" href="static/css/style.css">
+    
+    </head>
+<body>
+    <div class="container">
+        <div class="box">
+            <form method="POST" class="detais" id="register-form">
+                <h2>Register</h2>
+                <div class="box-wrapper">
+                    <label for="name"><i class="fa fa-user fa-lg"></i></label>
+                    <input type="text" name="username" id="name" placeholder="Username" required>
+                </div>
+                <div class="box-wrapper">
+                    <label for="email"><i class="fa-solid fa-envelope fa-lg"></i></label>
+                    <input type="text" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="box-wrapper">
+                    <label for="pass"><i class="fa-solid fa-lock fa-lg lock-icon" onclick="togglePassword('pass', this)"></i></label>
+                    <input type="password" name="password" id="pass" placeholder="Password" required>
+                    
+                </div>
+                <div class="box-wrapper">
+                    <label for="cpass"><i class="fa-solid fa-lock fa-lg lock-icon" onclick="togglePassword('cpass', this)"></i></label>
+                    <input type="password" id="cpass" name="cpass" placeholder="Confirm Password" required>
+                </div>
+                
+                <input type="submit" name="signup" id="signup" value="Register"/>
+                
+                <p>Already have an account</p>
+                <a href="/login">Log in</a>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Upload Book</title>
+    <style>
+        body {
+            background-color: #f4f4f9; /* Very light gray background */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .action-form {
+            margin-top: 20px;
+        }
+
+        .action-button {
+            background-color: #007BFF; /* Bootstrap blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0; /* Margin bottom for spacing */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Full width buttons */
+        }
+
+        .action-button:hover {
+            background-color: #0056b3; /* Darker blue for hover effect */
+        }
+
+        .logout-link {
+            display: block;
+            background-color: #dc3545; /* Bootstrap red */
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 90%; /* Full width link */
+        }
+
+        .logout-link:hover {
+            background-color: #c82333; /* Darker red for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add/Upload Book</h1>
+        <form action="/admin-choice" method="POST" class="action-form">
+            <input type="submit" name="action" value="Add a Book" class="action-button">
+            <input type="submit" name="action" value="Upload Book PDF" class="action-button">
+            <input type="submit" name="action" value="Delete Book" class="action-button">
+        </form>
+        <a href="/logout" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

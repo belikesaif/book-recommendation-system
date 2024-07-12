@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        #pdf-viewer {
+            width: 100%;
+            height: 0; /* Adjust the height as needed */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 50px 20px 20px;
+            margin: 20px 0;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input[type="text"], input[type="file"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .welcome {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .main-card-container {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 4 items per row */
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            padding: 20px;
+            border: 2px solid grey;
+            border-radius: 12px;
+            background: #478778;
+            box-shadow: 4px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card:hover {
+            background: green;
+        }
+        .card-img-top {
+            width: 100%;
+            max-height: 150px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 1200px) {
+            .main-card-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .main-card-container {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-card-container {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="http://127.0.0.1:5001/admin-choice"><h1>Welcome Admin</h1></a>
+    {% if num == 1 %}
+    <div class="container">
+        <h2>Add a Book</h2>
+        <form action="/add_book" method="POST" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required><br>
+            <label for="publication_year">Publication Year:</label>
+            <input type="text" id="publication_year" name="publication_year" required><br>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required><br>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required><br>
+            <label for="comment">Summary:</label><br>
+            <textarea id="comment" name="comment" rows="4" required placeholder="Please enter a summary."></textarea><br>
+            <input type="submit" value="Add Book">
+        </form>
+    </div>
+    {% elif num == 2 %}
+    <div class="container welcome">
+        <p>Welcome</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="book">Choose a book file:</label><br>
+            <input type="file" id="book" name="book" accept=".pdf,.epub"><br><br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+    {% elif num == 3 %}
+    <div class="container">
+        <h2>Delete a Book</h2>
+        <form action="/search_for_book" method="POST">
+            <label for="Book_name">Input Book Title to delete:</label>
+            <input type="hidden" name="num" value="{{ num }}">
+            <input type="text" id="Book_name" name="Book_name" required>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <br>
+    {% if results %}
+    <div class="main-card-container">
+        {% for book in results %}
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ book['Link'] }}">{{ book['Link'] }}
+                    <img class="card-img-top" src="{{ book['Image-URL-M'] }}" alt="Book Image">
+                </a>
+                <p class="text-white">{{ book['Book-Title'] }}</p>
+                <h4 class="text-white">{{ book['Book-Author'] }}</h4>
+            </div>
+
+            <form action="/delete_book" method="POST">
+                <input type="hidden" name="book_title" value="{{ book['Book-Title'] }}">
+                <button type="submit" class="btn">Delete Book</button>
+            </form>
+
+            <form action="/delete_book_pdf" method="POST">
+                <input type="hidden" name="book_title" value="{{ book['Book-Title'] }}">
+                <button type="submit" class="btn">Delete the Book PDF</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <br>
+    {% endif %}
+</body>
+</html>

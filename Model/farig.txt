@@ -1,0 +1,21 @@
+import aiohttp
+import asyncio
+#Remove those row whose Image Link are not working
+    async def check_url_status(url):
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.head(url) as response:
+                    print(response.status)
+                    return response.status == 200
+            except:
+                print(response.status)
+                print("False")
+                return False
+
+    async def filter_urls(dfs):
+        tasks = [check_url_status(url) if url != 'Not Available' else False for url in dfs['Image-URL-M']]
+        valid_indices = [i for i, status in enumerate(await asyncio.gather(*tasks)) if status]
+        return dfs.iloc[valid_indices]
+
+    # Use asyncio to run the asynchronous URL check
+    df = asyncio.run(filter_urls(df))
