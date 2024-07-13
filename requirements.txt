@@ -177,7 +177,6 @@ prompt-toolkit
 proto-plus
 protobuf
 psutil
-psycopg2
 pure-eval
 pvporcupine
 pyarrow
