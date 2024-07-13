@@ -1,1 +1,1 @@
-pip install -r requirements
+python pip install -r requirements
