@@ -40,7 +40,7 @@ cymem==2.0.8
 debugpy==1.6.7.post1
 decorator==5.1.1
 defusedxml==0.7.1
-Django==5.0.6
+Django==4.2
 django-allauth==0.63.2
 dnspython==2.6.1
 docx2txt==0.8
