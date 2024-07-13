@@ -98,7 +98,7 @@ idna==3.4
 importlib-metadata==7.0.1
 intel-openmp==2021.4.0
 ipykernel==6.25.1
-ipython==8.14.0
+ipython
 ipython-genutils==0.2.0
 ipywidgets==8.1.0
 isoduration==20.11.0
