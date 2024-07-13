@@ -2,9 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "build.sh",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "public" }
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python39"
+      }
     }
   ],
   "routes": [
@@ -12,8 +14,5 @@
       "src": "/(.*)",
       "dest": "app.py"
     }
-  ],
-  "env": {
-    "PYTHONUNBUFFERED": "1"
-  }
+  ]
 }
