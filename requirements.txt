@@ -1,4 +1,3 @@
-unspecify all the libs versions:
 absl-py==1.4.0
 pywinauto
 alembic==1.13.1
