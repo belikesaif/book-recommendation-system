@@ -177,7 +177,6 @@ prompt-toolkit==3.0.39
 proto-plus==1.23.0
 protobuf==4.25.2
 psutil==5.9.5
-psycopg2==2.9.9
 pure-eval==0.2.2
 pvporcupine==3.0.2
 pyarrow==15.0.0
